@@ -97,13 +97,15 @@ app.post('/login', async (req, res) => {
     }
 });
   
-app.get('/logout', (req, res) => {
+app.post('/logout', (req, res) => {
+  if (req.body.message == 'logout'){
   req.session.destroy((err) => {
     if (err) {
       console.error(err);
     }
-    res.json({ message: 'Logout successful' });
+    return res.status(200).json({ message: 'logout successful' });
   });
+}
 });
   
 
